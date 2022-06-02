@@ -13,11 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('train_names', function (Blueprint $table) {
+        Schema::create('bullet_train_routes', function (Blueprint $table) {
             $table->id();
-            $table->string('name')->nullable(false)->comment('便名');
-            $table->time('start_at')->nullable(false)->comment('出発時刻');
-            $table->foreignId('train_route_code_id')->nullable(false)->comment('紐づく走行ルート');
+            $table->string('name')->nullable(false)->comment('走行ルート名');
+            $table->foreignId('station_id')->nullable(false)->comment('駅ID');
+            $table->foreignId('route_code_id')->nullable(false)->comment('走行ルートコードID');
             $table->timestamps();
         });
     }
@@ -29,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('train_names');
+        Schema::dropIfExists('bullet_train_routes');
     }
 };
